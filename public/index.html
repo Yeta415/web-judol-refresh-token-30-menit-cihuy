@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Cookie & Session Refresher | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+            <path d="M8.5 8.5v.01"></path>
+            <path d="M11.5 15.5v.01"></path>
+            <path d="M15.5 11.5v.01"></path>
+          </svg>
+        </div>
+        <div>
+          <h1>Cookie Refresh Manager</h1>
+          <p class="subtitle">Auto Login & Session Keeper per 30 Menit</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <div class="target-badge" id="targetBadge">
+          <span class="pulse-dot"></span>
+          <span id="targetUrlText">https://vhjgakh.com</span>
+        </div>
+        <div class="status-badge" id="globalStatusBadge">
+          <span id="statusLabel">Memuat...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="dashboard-grid">
+      <!-- Card 1: Live Status & Countdown -->
+      <section class="card stat-card">
+        <div class="card-header">
+          <h3>Siklus Refresh Otomatis</h3>
+          <span class="badge badge-interval" id="intervalBadge">Setiap 30 Menit</span>
+        </div>
+        <div class="card-body">
+          <div class="timer-display">
+            <div class="timer-unit">
+              <span class="timer-val" id="countdownMin">--</span>
+              <span class="timer-label">MENIT</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-unit">
+              <span class="timer-val" id="countdownSec">--</span>
+              <span class="timer-label">DETIK</span>
+            </div>
+          </div>
+          <div class="meta-rows">
+            <div class="meta-row">
+              <span class="meta-title">Refresh Terakhir:</span>
+              <span class="meta-value" id="lastRefreshTime">-</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-title">Refresh Berikutnya:</span>
+              <span class="meta-value" id="nextRefreshTime">-</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-title">Total Cookies:</span>
+              <span class="meta-value count-highlight" id="cookieCount">0 Cookies</span>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button id="btnManualRefresh" class="btn btn-primary">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+              </svg>
+              <span>Refresh Cookies Sekarang</span>
+            </button>
+            <button id="btnTestCookies" class="btn btn-secondary">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span>Test Validitas Cookies</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Cookie Inspector & Copy -->
+      <section class="card cookie-card">
+        <div class="card-header">
+          <h3>Raw Cookie String</h3>
+          <button id="btnCopyCookie" class="btn-copy">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copyLabel">Copy Header</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="code-box-container">
+            <pre><code id="rawCookieBox">Memuat cookies...</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2B: Auth Token (JWT) -->
+      <section class="card cookie-card">
+        <div class="card-header">
+          <h3>Session Auth Token (JWT)</h3>
+          <button id="btnCopyToken" class="btn-copy">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copyTokenLabel">Copy Token</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="code-box-container">
+            <pre><code id="tokenBox">Memuat token...</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Test Result Output -->
+      <section class="card test-card" id="testResultSection" style="display: none;">
+        <div class="card-header">
+          <h3>Hasil Test Validitas API</h3>
+          <span class="badge" id="testStatusBadge">Success</span>
+        </div>
+        <div class="card-body">
+          <div class="test-metrics">
+            <div class="metric">
+              <span class="metric-label">HTTP Status</span>
+              <span class="metric-val" id="testStatusCode">200</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Latency</span>
+              <span class="metric-val" id="testLatency">120ms</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Kesimpulan</span>
+              <span class="metric-val" id="testVerdict">Sesi Aktif</span>
+            </div>
+          </div>
+          <div class="code-box-container mini">
+            <pre><code id="testResponseBox">...</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: API Endpoints Reference -->
+      <section class="card api-reference-card">
+        <div class="card-header">
+          <h3>Daftar API Endpoint</h3>
+          <span class="badge badge-info">REST API</span>
+        </div>
+        <div class="card-body">
+          <div class="api-list">
+            <div class="api-item">
+              <div class="api-meta">
+                <span class="method get">GET</span>
+                <code class="endpoint">/api/cookies</code>
+              </div>
+              <p class="api-desc">Mengembalikan daftar objek cookies lengkap & metadata sesi (JSON format).</p>
+            </div>
+            <div class="api-item">
+              <div class="api-meta">
+                <span class="method get">GET</span>
+                <code class="endpoint">/api/cookies/raw</code>
+              </div>
+              <p class="api-desc">Mengembalikan string header Cookie (format <code>name=val; name2=val2</code>) siap tempel ke Curl/Bot.</p>
+            </div>
+            <div class="api-item">
+              <div class="api-meta">
+                <span class="method get">GET</span>
+                <code class="endpoint">/api/test</code>
+              </div>
+              <p class="api-desc">Menguji apakah cookies yang disimpan masih valid & merespon pada target website.</p>
+            </div>
+            <div class="api-item">
+              <div class="api-meta">
+                <span class="method post">POST</span>
+                <code class="endpoint">/api/refresh</code>
+              </div>
+              <p class="api-desc">Memicu proses login Puppeteer dan refresh cookies seketika tanpa menunggu jadwal 30 menit.</p>
+            </div>
+            <div class="api-item">
+              <div class="api-meta">
+                <span class="method get">GET</span>
+                <code class="endpoint">/api/status</code>
+              </div>
+              <p class="api-desc">Cek status background runner, countdown, dan timestamp refresh.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Parsed Cookies Table -->
+      <section class="card full-width">
+        <div class="card-header">
+          <h3>Detail Cookies Tersimpan</h3>
+          <button id="btnReloadTable" class="btn-sm">Perbarui Tampilan</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="cookies-table">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Value</th>
+                  <th>Domain</th>
+                  <th>Path</th>
+                  <th>HttpOnly</th>
+                  <th>Secure</th>
+                </tr>
+              </thead>
+              <tbody id="cookiesTableBody">
+                <tr>
+                  <td colspan="6" class="text-center">Memuat daftar cookie...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Puppeteer Auto Session Refresher Service &copy; 2026 | Node.js + Express</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
