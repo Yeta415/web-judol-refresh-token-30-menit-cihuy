@@ -100,6 +100,16 @@ class PuppeteerService {
       // Tutup popup banner jika ada
       await this.dismissPopups(page);
 
+      // Cek apakah halaman ter-redirect ke home atau sudah login
+      const currentUrl = page.url();
+      if (!currentUrl.includes('login')) {
+        console.log('[Puppeteer] Halaman dialihkan keluar dari login, memaksa navigasi ulang ke #/login...');
+        await page.goto(loginUrl, { waitUntil: 'networkidle2', timeout: 20000 }).catch(() => {});
+        await page.waitForSelector('input', { timeout: 10000 }).catch(() => {});
+        await new Promise(r => setTimeout(r, 1500));
+        await this.dismissPopups(page);
+      }
+
       // Cek kredensial
       if (username && password && password.trim().length > 0) {
         console.log(`[Puppeteer] Memasukkan kredensial akun: ${username}...`);

@@ -7,7 +7,9 @@ const globalStatusBadge = document.getElementById('globalStatusBadge');
 const statusLabel = document.getElementById('statusLabel');
 const countdownMin = document.getElementById('countdownMin');
 const countdownSec = document.getElementById('countdownSec');
-const lastRefreshTime = document.getElementById('lastRefreshTime');
+const userProfileText = document.getElementById('userProfileText');
+const expiresAtTime = document.getElementById('expiresAtTime');
+const expirySourceText = document.getElementById('expirySourceText');
 const nextRefreshTimeEl = document.getElementById('nextRefreshTime');
 const cookieCountEl = document.getElementById('cookieCount');
 const rawCookieBox = document.getElementById('rawCookieBox');
@@ -83,19 +85,34 @@ function updateUIStatus(data) {
     btnManualRefresh.querySelector('span').textContent = 'Refresh Cookies Sekarang';
   }
 
-  // Last refresh format
-  if (state.lastRefresh) {
-    const d = new Date(state.lastRefresh);
-    lastRefreshTime.textContent = d.toLocaleTimeString('id-ID') + ' (' + d.toLocaleDateString('id-ID') + ')';
-  } else {
-    lastRefreshTime.textContent = 'Belum pernah';
+  // Profile
+  if (userProfileText) {
+    const username = state.accountUsername || '-';
+    const nick = state.nickName ? ` (${state.nickName})` : '';
+    const amt = state.userAmount ? ` • Saldo: Rp ${state.userAmount}` : '';
+    userProfileText.textContent = `${username}${nick}${amt}`;
+  }
+
+  // Expiry
+  if (expiresAtTime) {
+    if (state.expiresAt) {
+      const d = new Date(state.expiresAt);
+      expiresAtTime.textContent = d.toLocaleTimeString('id-ID') + ' (' + d.toLocaleDateString('id-ID') + ')';
+    } else {
+      expiresAtTime.textContent = '-';
+    }
+  }
+
+  // Expiry Source
+  if (expirySourceText) {
+    expirySourceText.textContent = state.expirySource || 'Auto-Detect';
   }
 
   // Next refresh
   if (state.nextRefresh) {
     nextRefreshTime = new Date(state.nextRefresh).getTime();
     const d = new Date(state.nextRefresh);
-    nextRefreshTimeEl.textContent = d.toLocaleTimeString('id-ID');
+    nextRefreshTimeEl.textContent = d.toLocaleTimeString('id-ID') + ' (' + d.toLocaleDateString('id-ID') + ')';
   }
 }
 

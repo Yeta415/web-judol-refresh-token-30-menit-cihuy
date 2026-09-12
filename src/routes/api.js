@@ -3,6 +3,7 @@ const axios = require('axios');
 const https = require('https');
 const sessionStore = require('../services/sessionStore');
 const puppeteerService = require('../services/puppeteerService');
+const scheduler = require('../services/scheduler');
 
 const router = express.Router();
 
@@ -19,19 +20,34 @@ const axiosInstance = axios.create({
  */
 router.get('/status', (req, res) => {
   const state = sessionStore.getState();
-  const token = state.localStorage?.token || '';
+  const token = state.token || state.localStorage?.token || '';
+  const nowMs = Date.now();
+
+  const expiresAtMs = state.expiresAt ? new Date(state.expiresAt).getTime() : null;
+  const nextRefreshMs = state.nextRefresh ? new Date(state.nextRefresh).getTime() : null;
+
+  const timeUntilExpirySec = expiresAtMs ? Math.max(0, Math.floor((expiresAtMs - nowMs) / 1000)) : null;
+  const timeUntilRefreshSec = nextRefreshMs ? Math.max(0, Math.floor((nextRefreshMs - nowMs) / 1000)) : null;
 
   res.json({
     status: 'ok',
     isRefreshing: puppeteerService.isRefreshing,
+    mode: 'auto_detect_expiry',
     state: {
       status: state.status,
       accountUsername: process.env.ACCOUNT_USERNAME || '',
+      nickName: state.tokenInfo?.nickName || '',
+      userAmount: state.tokenInfo?.amount || '',
       lastRefresh: state.lastRefresh,
+      expiresAt: state.expiresAt,
       nextRefresh: state.nextRefresh,
+      expirySource: state.expirySource,
+      timeUntilExpirySec,
+      timeUntilRefreshSec,
       cookieCount: state.cookieCount,
       hasAuthToken: Boolean(token && token.length > 5),
-      tokenPreview: token ? `${token.substring(0, 15)}...` : null,
+      tokenPreview: token ? `${token.substring(0, 20)}...` : null,
+      tokenInfo: state.tokenInfo,
       hasValidSession: state.hasValidSession,
       targetUrl: state.targetUrl,
       lastError: state.lastError
@@ -44,7 +60,7 @@ router.get('/status', (req, res) => {
  */
 router.get('/cookies', (req, res) => {
   const state = sessionStore.getState();
-  const token = state.localStorage?.token || '';
+  const token = state.token || state.localStorage?.token || '';
 
   res.json({
     success: true,
@@ -52,6 +68,9 @@ router.get('/cookies', (req, res) => {
     cookies: state.cookies,
     cookieString: state.cookieString,
     token: token,
+    tokenInfo: state.tokenInfo,
+    expiresAt: state.expiresAt,
+    expirySource: state.expirySource,
     userAgent: state.userAgent,
     localStorage: state.localStorage,
     lastRefresh: state.lastRefresh
@@ -78,16 +97,13 @@ router.get('/cookies/raw', (req, res) => {
 
 /**
  * GET /api/test
- * Pengujian sesi & cookies.
- * Mendukung mode browser (`?mode=browser` atau otomatis jika Cloudflare proteksi terdeteksi)
  */
 router.get('/test', async (req, res) => {
   const state = sessionStore.getState();
-  const mode = req.query.mode; // 'browser' | 'http'
-  const token = state.localStorage?.token || '';
+  const mode = req.query.mode;
+  const token = state.token || state.localStorage?.token || '';
   const targetUrl = state.targetUrl || process.env.TARGET_URL || 'https://vhjgakh.com';
 
-  // Jika diminta mode browser atau jika ingin verifikasi visual/stealth langsung
   if (mode === 'browser') {
     const liveResult = await puppeteerService.testSessionLive();
     return res.json(liveResult);
@@ -115,7 +131,6 @@ router.get('/test', async (req, res) => {
 
     const latencyMs = Date.now() - startTime;
 
-    // Jika Cloudflare memblokir raw HTTP axios (403), jalankan fallback browser test untuk mendapatkan hasil akurat
     if (response.status === 403 && response.headers['server'] === 'cloudflare') {
       const browserResult = await puppeteerService.testSessionLive();
       return res.json({
@@ -146,7 +161,6 @@ router.get('/test', async (req, res) => {
       }
     });
   } catch (err) {
-    // Fallback ke browser check
     const browserResult = await puppeteerService.testSessionLive();
     res.json({
       ...browserResult,
@@ -171,11 +185,13 @@ router.post('/refresh', async (req, res) => {
 
   if (waitParam) {
     const result = await puppeteerService.refreshCookies();
+    scheduler.onManualRefreshComplete();
     return res.json(result);
   }
 
   puppeteerService.refreshCookies().then(result => {
     console.log('[API] Background manual refresh selesai:', result.success ? 'BERHASIL' : 'GAGAL');
+    scheduler.onManualRefreshComplete();
   });
 
   res.json({

@@ -1,12 +1,12 @@
 {
   "cookies": [
     {
-      "name": "_ga",
-      "value": "GA1.1.1309476648.1789215143",
+      "name": "_ga_FY6BMXPSR0",
+      "value": "GS2.1.s1789216374$o1$g0$t1789216383$j51$l0$h0",
       "domain": ".vhjgakh.com",
       "path": "/",
-      "expires": 1823775143.482271,
-      "size": 30,
+      "expires": 1823776383.592901,
+      "size": 59,
       "httpOnly": false,
       "secure": false,
       "session": false,
@@ -15,12 +15,12 @@
       "sameParty": false
     },
     {
-      "name": "_ga_FY6BMXPSR0",
-      "value": "GS2.1.s1789215143$o1$g1$t1789215175$j28$l0$h0",
+      "name": "_ga",
+      "value": "GA1.1.642044579.1789216374",
       "domain": ".vhjgakh.com",
       "path": "/",
-      "expires": 1823775175.970452,
-      "size": 59,
+      "expires": 1823776374.098713,
+      "size": 29,
       "httpOnly": false,
       "secure": false,
       "session": false,
@@ -29,32 +29,43 @@
       "sameParty": false
     }
   ],
-  "cookieString": "_ga=GA1.1.1309476648.1789215143; _ga_FY6BMXPSR0=GS2.1.s1789215143$o1$g1$t1789215175$j28$l0$h0",
+  "cookieString": "_ga_FY6BMXPSR0=GS2.1.s1789216374$o1$g0$t1789216383$j51$l0$h0; _ga=GA1.1.642044579.1789216374",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIxNzg5MjE2Mzg0IiwibmJmIjoiMTc4OTIxNjM4NCIsImV4cCI6IjE3ODkyMTgxODQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiI5LzEyLzIwMjYgODowMzowNCBQTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFjY2Vzc19Ub2tlbiIsIlVzZXJJZCI6IjE4ODk2NTciLCJVc2VyTmFtZSI6IjYyODMxNzAzNzA0MjgiLCJVc2VyUGhvdG8iOiIxIiwiTmlja05hbWUiOiJDaWtvbDE3IiwiQW1vdW50IjoiNjUuODUiLCJJbnRlZ3JhbCI6IjAiLCJMb2dpbk1hcmsiOiJINSIsIkxvZ2luVGltZSI6IjkvMTIvMjAyNiA3OjMzOjA0IFBNIiwiTG9naW5JUEFkZHJlc3MiOiIxODAuMjQ5LjIwMS4xNTIiLCJEYk51bWJlciI6IjAiLCJJc3ZhbGlkYXRvciI6IjAiLCJLZXlDb2RlIjoiMTQ1IiwiVG9rZW5UeXBlIjoiQWNjZXNzX1Rva2VuIiwiUGhvbmVUeXBlIjoiMCIsIlVzZXJUeXBlIjoiMCIsIlVzZXJOYW1lMiI6IiIsImlzcyI6Imp3dElzc3VlciIsImF1ZCI6ImxvdHRlcnlUaWNrZXQifQ.mprlW00HDaxkzA4tspaKJkC4x9QardFgkCbiSgUM6_Y",
+  "tokenInfo": {
+    "userName": "6283170370428",
+    "nickName": "Cikol17",
+    "amount": "65.85",
+    "expiresClaim": "9/12/2026 8:03:04 PM",
+    "expEpoch": "1789218184"
+  },
+  "expiresAt": "2026-09-12T13:03:04.000Z",
+  "nextRefresh": "2026-09-12T13:02:21.111Z",
+  "expirySource": "JWT Token (exp: 22.03.04)",
   "localStorage": {
     "remember": "",
     "tokenHeader": "Bearer ",
-    "userInfo": "{\"sign\":\"3FB965F37FFD303096E51E815C75A803613AE58CCE477EFA7D0F482DFC99E399\",\"userId\":1889657,\"userPhoto\":\"1\",\"userName\":\"6283170370428\",\"nickName\":\"Cikol17\",\"amount\":65.85,\"amountofCode\":17.5,\"isWithdraw\":null,\"message\":null,\"withdrawCount\":0,\"addTime\":\"2025-09-26 21:17:21\",\"userLoginDate\":\"2026-09-12 19:12:57\",\"startTime\":null,\"endTime\":null,\"fee\":0,\"unRead\":0,\"facebookAppID\":null,\"googleAppID\":null,\"twitterAppID\":null,\"keyCode\":null,\"uRate\":16577,\"trxRate\":0,\"uGold\":0,\"googleVerify\":0,\"isvalidator\":0,\"isRePwd\":\"0\",\"integral\":0,\"isOpenPointMall\":\"0\",\"isOpenAmountOfCode\":\"1\",\"isOpenOfficialRechargeInputDialog\":\"1\",\"isAllowUserAddUSDT\":\"1\",\"isShowWalletTotalCT\":\"1\",\"isShowRechargeBankList\":\"1\",\"isPopupCommissionSwitch\":\"0\",\"groupDataShowAuth\":[{\"id\":11,\"isShow\":true},{\"id\":12,\"isShow\":true},{\"id\":15,\"isShow\":true},{\"id\":16,\"isShow\":true},{\"id\":17,\"isShow\":true},{\"id\":18,\"isShow\":true},{\"id\":19,\"isShow\":false},{\"id\":20,\"isShow\":true}],\"verifyMethods\":{\"mobile\":\"6283170370428\",\"email\":\"\",\"google\":\"0\"},\"regType\":1,\"userGroupAuth\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"bindReward\":0,\"isGoogle\":\"0\",\"isOpenChampion\":\"0\",\"isAllowWithdraw\":1,\"userRechargeTimes\":19,\"allowNoRechargeGame\":\"1\",\"isPartnerReward\":\"1\",\"canDirectToGame\":true,\"isOpenNewSafe\":\"0\",\"useLanguage\":\"id\",\"channelAmountofCode\":0,\"unUsedRechargeCouponCount\":0}",
+    "userInfo": "{\"sign\":\"3FB965F37FFD303096E51E815C75A803613AE58CCE477EFA7D0F482DFC99E399\",\"userId\":1889657,\"userPhoto\":\"1\",\"userName\":\"6283170370428\",\"nickName\":\"Cikol17\",\"amount\":65.85,\"amountofCode\":17.5,\"isWithdraw\":null,\"message\":null,\"withdrawCount\":0,\"addTime\":\"2025-09-26 21:17:21\",\"userLoginDate\":\"2026-09-12 19:33:04\",\"startTime\":null,\"endTime\":null,\"fee\":0,\"unRead\":0,\"facebookAppID\":null,\"googleAppID\":null,\"twitterAppID\":null,\"keyCode\":null,\"uRate\":16577,\"trxRate\":0,\"uGold\":0,\"googleVerify\":0,\"isvalidator\":0,\"isRePwd\":\"0\",\"integral\":0,\"isOpenPointMall\":\"0\",\"isOpenAmountOfCode\":\"1\",\"isOpenOfficialRechargeInputDialog\":\"1\",\"isAllowUserAddUSDT\":\"1\",\"isShowWalletTotalCT\":\"1\",\"isShowRechargeBankList\":\"1\",\"isPopupCommissionSwitch\":\"0\",\"groupDataShowAuth\":[{\"id\":11,\"isShow\":true},{\"id\":12,\"isShow\":true},{\"id\":15,\"isShow\":true},{\"id\":16,\"isShow\":true},{\"id\":17,\"isShow\":true},{\"id\":18,\"isShow\":true},{\"id\":19,\"isShow\":false},{\"id\":20,\"isShow\":true}],\"verifyMethods\":{\"mobile\":\"6283170370428\",\"email\":\"\",\"google\":\"0\"},\"regType\":1,\"userGroupAuth\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"bindReward\":0,\"isGoogle\":\"0\",\"isOpenChampion\":\"0\",\"isAllowWithdraw\":1,\"userRechargeTimes\":19,\"allowNoRechargeGame\":\"1\",\"isPartnerReward\":\"1\",\"canDirectToGame\":true,\"isOpenNewSafe\":\"0\",\"useLanguage\":\"id\",\"channelAmountofCode\":0,\"unUsedRechargeCouponCount\":0}",
     "ar_ws_channels": "[\"/WebApi/1045/userid/1889657\"]",
     "arb_api_src": "{\"value\":[\"https://apiweb.asjoby.com\"],\"expires\":-1}",
     "walletStore": "{\"bankName\":{},\"withdrawalslist\":[],\"bankList\":[],\"withdrawals\":{\"amount\":0,\"pwd\":\"\",\"type\":0,\"bid\":0},\"payTabList\":[],\"amount\":65.85,\"timestampLast\":0,\"timestamp\":0,\"allwallets\":\"\",\"isAllowUserAddUSDT\":true}",
     "numberType": "62",
-    "ar_ws_url": "\"wss://pro-v3-payplatform.admin-broadcast.com/event/realtime?Token=eyJhbGciOiJSUzI1NiIsImtpZCI6IkxvdHRvU2FhcyIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxODg5NjU3IiwiaWF0IjoxNzg5MjE1MTc3LCJqdGkiOiI4NjY0M2Y1YS0yMmI2LTQ0ODQtOGNmMi1iMWFjMjRlODAwNjIiLCJuYmYiOjE3ODkyMTUxNzcsImV4cCI6MTc4OTMwMTU3NywiaXNzIjoiaHR0cHM6Ly9wcm8tdjMtcGF5cGxhdGZvcm0tYXV0aC5hZG1pbi1icm9hZGNhc3QuY29tIn0.oWeXHXnAkZq4nG50cg7TfFmAeuPlqDFQWxjp8J004q3sQyrfNydtVK_K4Cf3z3TRcT3vqNkvcNfx0i_2d1DSFT4gvaeXoT7UzKU9OeFCKJDniwIpc2ZQHFXUyIaqy-kgJOLyrWD6xkHfxIwbLhMk4d3SGBdwtRF4XRN-h8yPxdtVQ4rXUrCxaMncQki8sw6jNu_GjTG9C3B4gShh2yp3OC7BkrlysDNBFZJeoijSW2GbPfMuwtoh2DWb4CRaXJImsdA6gNBsHcRjf7Mj4uO_bbgYdRuzj9Hud5Ys2zQR14D613bss9ZGtG3wzQyYHXoNFjcbsIPznZUdVyIqFBPNTg\"",
+    "ar_ws_url": "\"wss://pro-v3-payplatform.admin-broadcast.com/event/realtime?Token=eyJhbGciOiJSUzI1NiIsImtpZCI6IkxvdHRvU2FhcyIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxODg5NjU3IiwiaWF0IjoxNzg5MjE2Mzg0LCJqdGkiOiIxZDg1MmVmOS1jMDg1LTRkYzktOGU0NC1hYTY1ZmJjNjJhY2UiLCJuYmYiOjE3ODkyMTYzODQsImV4cCI6MTc4OTMwMjc4NCwiaXNzIjoiaHR0cHM6Ly9wcm8tdjMtcGF5cGxhdGZvcm0tYXV0aC5hZG1pbi1icm9hZGNhc3QuY29tIn0.FCurWLQBCVJuxVegutqTCmsNpWclIVJ2dMG_uNOc_gHg3VJbKL4CD2GCpVBb6BIUmdtp6BliZylMy2XmFgcg9W-L3FNKSzhE1XzdV6b1Il655qVkTYiTjggW5nKtfdJxDZ235Ra4YviRCOBE5svYT3oWxUITGPY08zCnXHnw152-c_35RBIvnAUVc_8Zqa1vBfrAUhnrhJUgwOSxtIT5LrTKIihF1zjzAxSdYIaVxROVAo9i9nd84dcR4YL-UxEPXU1nl2r5NVoOFTuBSeqNJQptlwvGGKZ70AmocA4gIZomokwSCYNfTb23yENEZZ8tI4sdcXLStktxfMPFRz9Q8g\"",
     "email": "",
     "isToLogin": "2",
-    "SettingStore": "{\"areaPhoneLenList\":[{\"area\":\"+62\",\"len\":\"9-12\"}],\"areacode\":\"+62\",\"headLogo\":\"https://ossimg.55lottertttapi.com/55lottery/other/h5setting_20230712140535knh2.png\",\"isShowAppDownloadUp\":true,\"isShowAppDownloadDown\":false,\"isShowLotteryDragon\":true,\"isShowDownAppBonusAmountSwitch\":false,\"jackportMaxReswadAmount\":125000,\"projectName\":\"55five\",\"projectLogo\":\"https://ossimg.55lottertttapi.com/55lottery/other/h5setting_20230712140533vgnl.png\",\"languages\":\"en|id\",\"webIco\":\"https://ossimg.55lottertttapi.com/55lottery/other/h5setting_20230712140537q813.ico\",\"dollarSign\":\"Rp\",\"upperOrLower\":\"0\",\"defaultCurrentLanguage\":\"id\",\"isSplitLocalEWallet\":true,\"isOpenLoginChangeLanguage\":\"1\",\"ossUrl\":\"https://ossimg.55lottertttapi.com\",\"rewardValidityTime\":1,\"winRate\":{\"electronicWinRateExternalLink\":\"https://slot.55fiveee.com\",\"electronicWinRateImgUrl\":\"https://ossimg.55lottertttapi.com/55lottery/vendorlogo/vendorlogo_20231118161120og6e.png\",\"isShowElectronicWinRateExternalLink\":true},\"isShowHotGameWinOdds\":true,\"isShowAppHandCodeWashingSwitch\":true,\"bigTurntableLink\":\"\",\"bigTurntableImgUrl\":\"\",\"homeBigTurntableLink\":\"\",\"homeBigTurntableImgUrl\":\"\",\"telegramExternalLink\":\"\",\"telegramImgUrl\":\"\",\"lotteryDragonIcon\":null,\"isOpenTurntable\":true,\"isPartnerReward\":true,\"isSelfCustomerService\":true,\"webSiteUrl\":\"https://www.afpk054.com\",\"isOpenAdjustEvent\":false,\"isOpenRegisterPhoneFirstZeroSwitch\":false,\"firebaseConfig\":{\"apiKey\":null,\"authDomain\":null,\"projectId\":null,\"storageBucket\":null,\"messagingSenderId\":null,\"appId\":null,\"measurementId\":null,\"keyPair\":\"\"},\"isOpenArLottery\":false,\"isSwitchSaasBalance\":false,\"arUpiInputUtrSwitch\":true,\"isOpenInvitedWheel\":true,\"invitedWheelImgUrl\":\"https://ossimg.55lottertttapi.com/55lottery/tab/wheel.png\",\"invitedWheelTotalPrizeAmount\":100000,\"isOpenDownAppRewardSwitch\":false,\"isShowRewardCenter\":true,\"downAppBonusAmount\":0,\"downAppRechargeAmount\":0,\"bonusCenterImgUrl\":\"\",\"isOpenBrowserConsoleDebug\":true,\"needKycValidIsOpen\":false,\"needFastKycValidIsOpen\":false,\"homeBigTurntableSwitch\":true,\"lastestAppVersionInfo\":null}",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIxNzg5MjE1MTc3IiwibmJmIjoiMTc4OTIxNTE3NyIsImV4cCI6IjE3ODkyMTY5NzciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiI5LzEyLzIwMjYgNzo0Mjo1NyBQTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFjY2Vzc19Ub2tlbiIsIlVzZXJJZCI6IjE4ODk2NTciLCJVc2VyTmFtZSI6IjYyODMxNzAzNzA0MjgiLCJVc2VyUGhvdG8iOiIxIiwiTmlja05hbWUiOiJDaWtvbDE3IiwiQW1vdW50IjoiNjUuODUiLCJJbnRlZ3JhbCI6IjAiLCJMb2dpbk1hcmsiOiJINSIsIkxvZ2luVGltZSI6IjkvMTIvMjAyNiA3OjEyOjU3IFBNIiwiTG9naW5JUEFkZHJlc3MiOiIxODAuMjQ5LjIwMS4xNTIiLCJEYk51bWJlciI6IjAiLCJJc3ZhbGlkYXRvciI6IjAiLCJLZXlDb2RlIjoiMTQ0IiwiVG9rZW5UeXBlIjoiQWNjZXNzX1Rva2VuIiwiUGhvbmVUeXBlIjoiMCIsIlVzZXJUeXBlIjoiMCIsIlVzZXJOYW1lMiI6IiIsImlzcyI6Imp3dElzc3VlciIsImF1ZCI6ImxvdHRlcnlUaWNrZXQifQ.T9aPf2jrSK6LOXim-ctkM-eG6-7x-FIUt1ilHR7hl1A",
-    "arb_api_ts": "{\"value\":1789215147161,\"expires\":-1}",
+    "SettingStore": "{\"areaPhoneLenList\":[{\"area\":\"+62\",\"len\":\"9-12\"}],\"areacode\":\"+62\",\"headLogo\":\"https://ossimg.55lottertttapi.com/55lottery/other/h5setting_20230712140535knh2.png\",\"isShowAppDownloadUp\":true,\"isShowAppDownloadDown\":false,\"isShowLotteryDragon\":true,\"isShowDownAppBonusAmountSwitch\":false,\"jackportMaxReswadAmount\":125000,\"projectName\":\"55five\",\"projectLogo\":\"https://ossimg.55lottertttapi.com/55lottery/other/h5setting_20230712140533vgnl.png\",\"languages\":\"en|id\",\"webIco\":\"https://ossimg.55lottertttapi.com/55lottery/other/h5setting_20230712140537q813.ico\",\"dollarSign\":\"Rp\",\"upperOrLower\":\"0\",\"defaultCurrentLanguage\":\"id\",\"isSplitLocalEWallet\":true,\"isOpenLoginChangeLanguage\":\"1\",\"ossUrl\":\"https://ossimg.55lottertttapi.com\",\"rewardValidityTime\":1,\"winRate\":{\"electronicWinRateExternalLink\":\"https://slot.55fiveee.com\",\"electronicWinRateImgUrl\":\"https://ossimg.55lottertttapi.com/55lottery/vendorlogo/vendorlogo_20231118161120og6e.png\",\"isShowElectronicWinRateExternalLink\":true},\"isShowHotGameWinOdds\":true,\"isShowAppHandCodeWashingSwitch\":true,\"bigTurntableLink\":\"\",\"bigTurntableImgUrl\":\"\",\"homeBigTurntableLink\":\"\",\"homeBigTurntableImgUrl\":\"\",\"telegramExternalLink\":\"\",\"telegramImgUrl\":\"\",\"lotteryDragonIcon\":null,\"isOpenTurntable\":true,\"isPartnerReward\":true,\"isSelfCustomerService\":true,\"webSiteUrl\":\"https://www.zekruvi.com\",\"isOpenAdjustEvent\":false,\"isOpenRegisterPhoneFirstZeroSwitch\":false,\"firebaseConfig\":{\"apiKey\":null,\"authDomain\":null,\"projectId\":null,\"storageBucket\":null,\"messagingSenderId\":null,\"appId\":null,\"measurementId\":null,\"keyPair\":\"\"},\"isOpenArLottery\":false,\"isSwitchSaasBalance\":false,\"arUpiInputUtrSwitch\":true,\"isOpenInvitedWheel\":true,\"invitedWheelImgUrl\":\"https://ossimg.55lottertttapi.com/55lottery/tab/wheel.png\",\"invitedWheelTotalPrizeAmount\":100000,\"isOpenDownAppRewardSwitch\":false,\"isShowRewardCenter\":true,\"downAppBonusAmount\":0,\"downAppRechargeAmount\":0,\"bonusCenterImgUrl\":\"\",\"isOpenBrowserConsoleDebug\":true,\"needKycValidIsOpen\":false,\"needFastKycValidIsOpen\":false,\"homeBigTurntableSwitch\":true,\"lastestAppVersionInfo\":null}",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIxNzg5MjE2Mzg0IiwibmJmIjoiMTc4OTIxNjM4NCIsImV4cCI6IjE3ODkyMTgxODQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiI5LzEyLzIwMjYgODowMzowNCBQTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFjY2Vzc19Ub2tlbiIsIlVzZXJJZCI6IjE4ODk2NTciLCJVc2VyTmFtZSI6IjYyODMxNzAzNzA0MjgiLCJVc2VyUGhvdG8iOiIxIiwiTmlja05hbWUiOiJDaWtvbDE3IiwiQW1vdW50IjoiNjUuODUiLCJJbnRlZ3JhbCI6IjAiLCJMb2dpbk1hcmsiOiJINSIsIkxvZ2luVGltZSI6IjkvMTIvMjAyNiA3OjMzOjA0IFBNIiwiTG9naW5JUEFkZHJlc3MiOiIxODAuMjQ5LjIwMS4xNTIiLCJEYk51bWJlciI6IjAiLCJJc3ZhbGlkYXRvciI6IjAiLCJLZXlDb2RlIjoiMTQ1IiwiVG9rZW5UeXBlIjoiQWNjZXNzX1Rva2VuIiwiUGhvbmVUeXBlIjoiMCIsIlVzZXJUeXBlIjoiMCIsIlVzZXJOYW1lMiI6IiIsImlzcyI6Imp3dElzc3VlciIsImF1ZCI6ImxvdHRlcnlUaWNrZXQifQ.mprlW00HDaxkzA4tspaKJkC4x9QardFgkCbiSgUM6_Y",
+    "arb_api_ts": "{\"value\":1789216373889,\"expires\":-1}",
     "arb_api_queue": "{\"value\":[\"https://apiweb.asjoby.com\"],\"expires\":-1}",
     "apk-value-storage": "",
     "ar_account_mobile": "{\"email\":\"\",\"numberType\":\"62\",\"number\":\"83170370428\",\"password\":\"\",\"logintype\":\"mobile\"}",
     "number": "83170370428",
     "webAppAvailable": "true",
     "arvId": "c8942aa2e8179d1ef008f37a117227ce",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIxNzg5MjE1MTc3IiwibmJmIjoiMTc4OTIxNTE3NyIsImV4cCI6IjE3ODkzMDE1NzciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiI5LzEzLzIwMjYgNzoxMjo1NyBQTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlJlZnJlc2hfVG9rZW4iLCJVc2VySWQiOiIxODg5NjU3IiwiVXNlck5hbWUiOiI2MjgzMTcwMzcwNDI4IiwiVXNlclBob3RvIjoiMSIsIk5pY2tOYW1lIjoiQ2lrb2wxNyIsIkFtb3VudCI6IjY1Ljg1IiwiSW50ZWdyYWwiOiIwIiwiTG9naW5NYXJrIjoiSDUiLCJMb2dpblRpbWUiOiI5LzEyLzIwMjYgNzoxMjo1NyBQTSIsIkxvZ2luSVBBZGRyZXNzIjoiMTgwLjI0OS4yMDEuMTUyIiwiRGJOdW1iZXIiOiIwIiwiSXN2YWxpZGF0b3IiOiIwIiwiS2V5Q29kZSI6IjE0NCIsIlRva2VuVHlwZSI6IlJlZnJlc2hfVG9rZW4iLCJQaG9uZVR5cGUiOiIwIiwiVXNlclR5cGUiOiIwIiwiVXNlck5hbWUyIjoiIiwiaXNzIjoiand0SXNzdWVyIiwiYXVkIjoibG90dGVyeVRpY2tldCJ9.ga4XK-EAQEs7Yug6WB_TxYvmhtEEzAXCcd245vF5q48",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIxNzg5MjE2Mzg0IiwibmJmIjoiMTc4OTIxNjM4NCIsImV4cCI6IjE3ODkzMDI3ODQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiI5LzEzLzIwMjYgNzozMzowNCBQTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlJlZnJlc2hfVG9rZW4iLCJVc2VySWQiOiIxODg5NjU3IiwiVXNlck5hbWUiOiI2MjgzMTcwMzcwNDI4IiwiVXNlclBob3RvIjoiMSIsIk5pY2tOYW1lIjoiQ2lrb2wxNyIsIkFtb3VudCI6IjY1Ljg1IiwiSW50ZWdyYWwiOiIwIiwiTG9naW5NYXJrIjoiSDUiLCJMb2dpblRpbWUiOiI5LzEyLzIwMjYgNzozMzowNCBQTSIsIkxvZ2luSVBBZGRyZXNzIjoiMTgwLjI0OS4yMDEuMTUyIiwiRGJOdW1iZXIiOiIwIiwiSXN2YWxpZGF0b3IiOiIwIiwiS2V5Q29kZSI6IjE0NSIsIlRva2VuVHlwZSI6IlJlZnJlc2hfVG9rZW4iLCJQaG9uZVR5cGUiOiIwIiwiVXNlclR5cGUiOiIwIiwiVXNlck5hbWUyIjoiIiwiaXNzIjoiand0SXNzdWVyIiwiYXVkIjoibG90dGVyeVRpY2tldCJ9.e9lJ1AiamFUnjb9Ujb7fUD_ldhXJr7InEGsLOKwaeoE",
     "webAppInstalled": "false",
     "language": "id",
     "clientConfig": "{}",
-    "ar_ws_token_expire_at": "1789301577341"
+    "ar_ws_token_expire_at": "1789302784653"
   },
   "sessionStorage": {
     "webStartPageShown": "1",
@@ -69,7 +80,7 @@
   },
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
   "targetUrl": "https://vhjgakh.com",
-  "lastRefresh": "2026-09-12T12:13:07.647Z",
+  "lastRefresh": "2026-09-12T12:33:09.311Z",
   "lastError": null,
-  "updatedAt": "2026-09-12T12:13:07.647Z"
+  "updatedAt": "2026-09-12T12:33:09.311Z"
 }

@@ -1,15 +1,14 @@
-# 🔄 Puppeteer Auto-Login & 30-Minute Cookie/Token Refresher
+# 🔄 Puppeteer Auto-Login & Smart Auto-Detect Expiry Token/Cookie Refresher
 
-Aplikasi otomatisasi berbasis **Node.js**, **Express**, dan **Puppeteer Stealth** yang secara otomatis melakukan login ulang ke target website (`https://vhjgakh.com`), mengekstrak & memperbarui **Cookies** dan **JWT Auth Token** setiap **30 menit**, serta menyediakan antarmuka **REST API** dan **Web Dashboard Interaktif**.
+Aplikasi otomatisasi berbasis **Node.js**, **Express**, dan **Puppeteer Stealth** yang secara otomatis **mendeteksi waktu kedaluwarsa bawaan dari Cookies / JWT Auth Token**, menghitung jadwal kedaluwarsa secara dinamis, dan melakukan **re-login otomatis tepat sebelum sesi berakhir** tanpa perlu mengatur waktu manual.
 
 ---
 
 ## 📑 Daftar Isi
 
 - [Fitur Utama](#-fitur-utama)
+- [Cara Kerja Auto-Detect Expiry](#-cara-kerja-auto-detect-expiry)
 - [Struktur Proyek](#-struktur-proyek)
-- [Persyaratan Sistem](#-persyaratan-sistem)
-- [Instalasi & Pengaturan](#-instalasi--pengaturan)
 - [Konfigurasi `.env`](#-konfigurasi-env)
 - [Menjalankan Aplikasi](#-menjalankan-aplikasi)
 - [Dokumentasi REST API](#-dokumentasi-rest-api)
@@ -18,22 +17,35 @@ Aplikasi otomatisasi berbasis **Node.js**, **Express**, dan **Puppeteer Stealth*
   - [3. GET `/api/test`](#3-get-apitest)
   - [4. POST `/api/refresh`](#4-post-apirefresh)
   - [5. GET `/api/status`](#5-get-apistatus)
-- [Web Dashboard](#-web-dashboard)
-- [Cara Kerja Scheduler 30 Menit](#-cara-kerja-scheduler-30-menit)
+- [Web Dashboard Interaktif](#-web-dashboard-interaktif)
 - [Troubleshooting & Solusi](#-troubleshooting--solusi)
+
+---
+
+## ⚡ Cara Kerja Auto-Detect Expiry
+
+Tidak perlu lagi mengatur timer interval secara manual! Sistem bekerja secara dinamis:
+
+1. **Deteksi JWT Auth Token & Cookie Expiry**:
+   - Sistem membedah payload JWT Token (`exp` epoch & expiration claim) dan timestamp cookie bawaan.
+   - Contoh token `exp`: `1789218184` (kedaluwarsa pukul `22:03:04`).
+2. **Kalkulasi Waktu Re-login Otomatis**:
+   - Re-login dijadwalkan otomatis **60 detik sebelum token kedaluwarsa** (pukul `22:02:04`).
+   - Mencegah sesi putus (*zero downtime*) di aplikasi atau bot pengguna.
+3. **Pembaruan Siklus Berkelanjutan**:
+   - Setiap kali re-login sukses, sistem membaca masa berlaku token baru dan memperbarui timer mundur berikutnya secara otomatis.
 
 ---
 
 ## ✨ Fitur Utama
 
-- 🔄 **Auto-Refresh 30 Menit**: Background scheduler (`node-cron`) otomatis melakukan login ulang dan memperbarui sesi setiap 30 menit.
+- ⚡ **Smart Auto-Detect Expiry**: Menghitung masa aktif JWT Token / Cookies bawaan secara otomatis.
 - 🥷 **Puppeteer Stealth Plugin**: Menyamarkan browser Chromium dari deteksi bot, sensor WAF, dan proteksi Cloudflare.
-- 🔑 **Ekstraksi JWT Auth Token**: Menangkap token otentikasi sesi dari `localStorage.token` dan data profil user.
+- 🔑 **Ekstraksi JWT Auth Token**: Menangkap token otentikasi sesi dari `localStorage.token` dan data profil user (NickName, Username, Saldo).
 - 🍪 **Manajemen Cookies Lengkap**: Menyimpan semua cookies sesi dan menyediakan format raw string siap pakai di header `Cookie`.
 - 💾 **Persistensi Sesi (`session.json`)**: Sesi dan token tersimpan otomatis ke file lokal sehingga tidak hilang saat server di-restart.
 - 🧪 **API Test Validitas Sesi**: Pengujian live ke website target menggunakan headless browser engine untuk memastikan akun tetap login.
 - 📊 **Web Dashboard Real-time**: Dashboard modern dark-mode dengan live countdown timer, 1-klik copy token/cookie, dan trigger refresh manual.
-- 🛡️ **SSL & Cloudflare Bypass**: Dilengkapi flag `--ignore-certificate-errors` dan penanganan modal / dialog announcement secara otomatis.
 
 ---
 
@@ -56,74 +68,32 @@ Aplikasi otomatisasi berbasis **Node.js**, **Express**, dan **Puppeteer Stealth*
     │   └── api.js        # Definisi route REST API (/cookies, /test, /refresh, dll.)
     └── services/
         ├── puppeteerService.js  # Otomasi Puppeteer, auto-login form, & ekstraksi
-        ├── sessionStore.js      # Pengelolaan memori & file session.json
-        └── scheduler.js         # Pengatur jadwal cron per 30 menit
+        ├── sessionStore.js      # Pengelolaan memori & deteksi masa kedaluwarsa
+        └── scheduler.js         # Dynamic scheduler berbasis waktu kedaluwarsa
 ```
-
----
-
-## 💻 Persyaratan Sistem
-
-- **Node.js**: Versi `18.x` atau lebih baru (`v20.x` direkomendasikan)
-- **NPM**: Versi `9.x` atau lebih baru
-- **Sistem Operasi**: Windows, Linux, atau macOS
-
----
-
-## ⚙️ Instalasi & Pengaturan
-
-1. **Clone atau buka folder proyek:**
-   ```bash
-   cd "y:/code/web judol refresh token per 30 menit"
-   ```
-
-2. **Install semua dependensi:**
-   ```bash
-   npm install
-   ```
-
-3. **Salin file konfigurasi `.env`:**
-   ```bash
-   cp .env.example .env
-   ```
 
 ---
 
 ## 🔧 Konfigurasi `.env`
 
-Edit file [`.env`](file:///y:/code/web%20judol%20refresh%20token%20per%2030%20menit/.env) sesuai dengan akun dan preferensi Anda:
+File [`.env`](file:///y:/code/web%20judol%20refresh%20token%20per%2030%20menit/.env):
 
 ```env
-# ============================================================
-# SERVER CONFIGURATION
-# ============================================================
+# Port Server API
 PORT=3000
 
-# ============================================================
-# TARGET SITE & CREDENTIALS
-# ============================================================
+# Target Web & Kredensial Akun
 TARGET_URL=https://vhjgakh.com
 ACCOUNT_USERNAME=6283170370428
 ACCOUNT_PASSWORD=Cikol1777
 
-# ============================================================
-# REFRESH INTERVAL (dalam menit, default: 30)
-# ============================================================
-REFRESH_INTERVAL_MINUTES=30
-
-# ============================================================
-# PUPPETEER CONFIGURATION
-# ============================================================
-# 'true' = headless (background), 'false' = tampilkan jendela Chrome
+# Mode Headless (true = background, false = buka browser Chrome)
 HEADLESS=true
 
-# Proxy opsional jika domain diblokir ISP lokal (contoh: http://127.0.0.1:8080)
-# PROXY_SERVER=
+# Proxy Opsional (jika domain diblokir ISP lokal)
+# PROXY_SERVER=http://127.0.0.1:8080
 
-# Timeout navigasi (milidetik)
-NAVIGATION_TIMEOUT=60000
-
-# Selector kustom (opsional, biarkan kosong untuk deteksi otomatis)
+# Selector Kustom (opsional, biarkan kosong untuk deteksi otomatis)
 SELECTOR_USERNAME=
 SELECTOR_PASSWORD=
 SELECTOR_SUBMIT=
@@ -139,7 +109,7 @@ Jalankan perintah berikut di terminal:
 npm start
 ```
 
-Setelah berjalan, output log akan menampilkan:
+Log server akan menampilkan:
 ```text
 ====================================================
 🚀 Cookie Refresher Service berjalan di port 3000
@@ -147,9 +117,10 @@ Setelah berjalan, output log akan menampilkan:
 🍪 API Cookies:  http://localhost:3000/api/cookies
 🧪 API Test:     http://localhost:3000/api/test
 🔄 Target URL:   https://vhjgakh.com
-⏰ Interval:     30 menit
 ====================================================
-[Scheduler] Mengatur auto-refresh login & cookies setiap 30 menit.
+[Scheduler] Mode Auto-Detect Expiry aktif (Re-login otomatis berdasarkan waktu kedaluwarsa cookies/token).
+[Scheduler] Re-login otomatis dijadwalkan pada: 22.02.04 (dalam ~28.8 menit)
+[Scheduler] Sumber deteksi: JWT Token (exp: 22.03.04)
 ```
 
 ---
@@ -168,21 +139,18 @@ Mengembalikan data lengkap cookies, JWT auth token, user agent, dan seluruh isi 
   {
     "success": true,
     "count": 2,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQi...",
-    "cookies": [
-      {
-        "name": "_ga",
-        "value": "GA1.1.1309476648.1789215143",
-        "domain": ".vhjgakh.com",
-        "path": "/",
-        "expires": 1823775143.482271,
-        "httpOnly": false,
-        "secure": false
-      }
-    ],
-    "cookieString": "_ga=GA1.1.1309476648.1789215143; _ga_FY6BMXPSR0=...",
-    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)...",
-    "lastRefresh": "2026-09-12T12:13:07.647Z"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "tokenInfo": {
+      "userName": "6283170370428",
+      "nickName": "Cikol17",
+      "amount": "65.85",
+      "expiresClaim": "9/12/2026 8:03:04 PM"
+    },
+    "expiresAt": "2026-09-12T13:03:04.000Z",
+    "expirySource": "JWT Token (exp: 22.03.04)",
+    "cookies": [ ... ],
+    "cookieString": "_ga=...; _ga_FY6BMXPSR0=...",
+    "lastRefresh": "2026-09-12T12:33:09.311Z"
   }
   ```
 
@@ -195,10 +163,6 @@ Mengembalikan string cookie mentah yang siap langsung ditempelkan ke HTTP header
   ```bash
   curl http://localhost:3000/api/cookies/raw
   ```
-- **Contoh Response (Plain Text):**
-  ```text
-  _ga=GA1.1.1309476648.1789215143; _ga_FY6BMXPSR0=GS2.1.s1789215143$o1$g1$t1789215175$j28$l0$h0
-  ```
 
 ---
 
@@ -209,13 +173,13 @@ Menguji apakah sesi login dan cookies yang tersimpan saat ini masih aktif dan va
   ```bash
   curl http://localhost:3000/api/test
   ```
-- **Contoh Response (Sesi Aktif):**
+- **Contoh Response:**
   ```json
   {
     "success": true,
     "method": "puppeteer_live_check",
     "statusCode": 200,
-    "latencyMs": "8550ms",
+    "latencyMs": "11099ms",
     "currentUrl": "https://vhjgakh.com/#/",
     "pageTitle": "55five",
     "hasAuthToken": true,
@@ -228,29 +192,17 @@ Menguji apakah sesi login dan cookies yang tersimpan saat ini masih aktif dan va
 ---
 
 ### 4. `POST /api/refresh`
-Memicu proses login Puppeteer dan pembaruan cookies secara seketika tanpa harus menunggu interval 30 menit.
+Memicu proses login Puppeteer dan pembaruan cookies secara manual seketika.
 
-- **Parameter:**
-  - `?wait=true` *(opsional)* : Menunggu hingga login selesai sebelum mengirimkan response.
 - **Contoh Request:**
   ```bash
   curl -X POST "http://localhost:3000/api/refresh?wait=true"
-  ```
-- **Contoh Response:**
-  ```json
-  {
-    "success": true,
-    "cookieCount": 2,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ...",
-    "cookieString": "_ga=GA1.1...; _ga_FY6BMXPSR0=...",
-    "lastRefresh": "2026-09-12T12:13:07.647Z"
-  }
   ```
 
 ---
 
 ### 5. `GET /api/status`
-Mengecek status service, waktu refresh terakhir, dan waktu refresh berikutnya.
+Mengecek status service, waktu kedaluwarsa sesi (`expiresAt`), dan jadwal re-login otomatis berikutnya (`nextRefresh`).
 
 - **Contoh Request:**
   ```bash
@@ -261,60 +213,38 @@ Mengecek status service, waktu refresh terakhir, dan waktu refresh berikutnya.
   {
     "status": "ok",
     "isRefreshing": false,
+    "mode": "auto_detect_expiry",
     "state": {
-      "status": "idle",
+      "status": "success",
       "accountUsername": "6283170370428",
-      "lastRefresh": "2026-09-12T12:13:07.647Z",
-      "nextRefresh": "2026-09-12T12:43:07.647Z",
+      "nickName": "Cikol17",
+      "userAmount": "65.85",
+      "lastRefresh": "2026-09-12T12:33:09.311Z",
+      "expiresAt": "2026-09-12T13:03:04.000Z",
+      "nextRefresh": "2026-09-12T13:02:04.000Z",
+      "expirySource": "JWT Token (exp: 22.03.04)",
+      "timeUntilExpirySec": 1789,
+      "timeUntilRefreshSec": 1729,
       "cookieCount": 2,
       "hasAuthToken": true,
-      "tokenPreview": "eyJhbGciOiJIUzI...",
       "hasValidSession": true,
-      "targetUrl": "https://vhjgakh.com",
-      "lastError": null
+      "targetUrl": "https://vhjgakh.com"
     }
   }
   ```
 
 ---
 
-## 🖥️ Web Dashboard
+## 🖥️ Web Dashboard Interaktif
 
-Buka **`http://localhost:3000`** pada browser untuk mengakses dashboard visual:
-
-1. ⏱️ **Countdown Timer 30 Menit**: Menghitung mundur real-time menuju eksekusi refresh otomatis berikutnya.
-2. 🔑 **Token Box**: Menampilkan JWT auth token aktif dan tombol *1-Click Copy*.
-3. 🍪 **Raw Cookie Box**: Menampilkan string header cookie dan tombol *1-Click Copy*.
-4. 🧪 **Test Validitas Cookies**: Tombol untuk melakukan pengecekan live ke web target dan melihat status HTTP & latensi.
-5. 🔄 **Refresh Cookies Sekarang**: Tombol trigger manual login ulang instan.
-6. 📑 **Tabel Detail Cookies**: Memeriksa nama, value, domain, path, secure, dan httponly dari tiap cookie.
-
----
-
-## ⏰ Cara Kerja Scheduler 30 Menit
-
-1. Saat server dinyalakan (`npm start`), scheduler memeriksa apakah sudah ada sesi tersimpan di `session.json`.
-2. Jika belum ada atau sesi kosong, Puppeteer otomatis menjalankan login awal.
-3. Cron job (`node-cron`) aktif dengan interval yang diatur pada `REFRESH_INTERVAL_MINUTES=30`.
-4. Setiap 30 menit sekali:
-   - Puppeteer Stealth membuka `https://vhjgakh.com/#/login` di latar belakang (mode headless).
-   - Menutup modal / dialog pengumuman jika ada.
-   - Mengisi nomor telepon & kata sandi dari `.env`.
-   - Mengklik tombol login.
-   - Mengambil token auth (`localStorage.token`) dan cookies terbaru.
-   - Menyimpan pembaruan ke memori dan file `session.json`.
-   - Menghitung waktu mundur 30 menit berikutnya.
-
----
-
-## 🛠️ Troubleshooting & Solusi
-
-| Masalah | Penyebab | Solusi |
-| :--- | :--- | :--- |
-| **Status 403 saat test via Axios** | Cloudflare WAF memblokir direct HTTP client | Aplikasi secara otomatis mengalihkan pengecekan ke browser stealth engine. Hasil validitas tetap akurat (`hasAuthToken: true`). |
-| **Domain dialihkan ke Internet Positif** | DNS ISP lokal memblokir domain judol | Isi opsi `PROXY_SERVER=http://ip:port` di `.env` atau gunakan VPN/DNS kustom (1.1.1.1). |
-| **Form login tidak terisi** | Perubahan selector pada website | Sesuaikan selector di `.env` (`SELECTOR_USERNAME`, `SELECTOR_PASSWORD`, `SELECTOR_SUBMIT`) atau set `HEADLESS=false` untuk melihat interaksi browser. |
-| **Port 3000 sudah dipakai** | Aplikasi lain menggunakan port 3000 | Ganti port di `.env` (misal: `PORT=3001` atau `PORT=5000`). |
+Buka **`http://localhost:3000`** pada browser:
+1. ⏱️ **Countdown Timer Otomatis**: Menghitung mundur menuju jadwal re-login dinamis berikutnya.
+2. 👤 **Profil & Saldo**: Menampilkan Nama Akun, Nickname (`Cikol17`), dan Saldo aktif.
+3. ⏳ **Info Kedaluwarsa Sesi**: Jam kedaluwarsa token JWT & sumber deteksi.
+4. 🔑 **Token Box**: Menampilkan token JWT aktif dan tombol *1-Click Copy*.
+5. 🍪 **Raw Cookie Box**: Menampilkan string header cookie dan tombol *1-Click Copy*.
+6. 🧪 **Test Validitas Cookies**: Tombol pengecekan live ke web target.
+7. 🔄 **Refresh Cookies Sekarang**: Tombol trigger manual login ulang instan.
 
 ---
 

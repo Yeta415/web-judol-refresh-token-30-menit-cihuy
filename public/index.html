@@ -43,8 +43,8 @@
       <!-- Card 1: Live Status & Countdown -->
       <section class="card stat-card">
         <div class="card-header">
-          <h3>Siklus Refresh Otomatis</h3>
-          <span class="badge badge-interval" id="intervalBadge">Setiap 30 Menit</span>
+          <h3>Siklus Smart Re-Login</h3>
+          <span class="badge badge-interval" id="intervalBadge">⚡ Auto-Detect Expiry</span>
         </div>
         <div class="card-body">
           <div class="timer-display">
@@ -60,11 +60,19 @@
           </div>
           <div class="meta-rows">
             <div class="meta-row">
-              <span class="meta-title">Refresh Terakhir:</span>
-              <span class="meta-value" id="lastRefreshTime">-</span>
+              <span class="meta-title">Akun / Profil:</span>
+              <span class="meta-value count-highlight" id="userProfileText">-</span>
             </div>
             <div class="meta-row">
-              <span class="meta-title">Refresh Berikutnya:</span>
+              <span class="meta-title">Kedaluwarsa Sesi:</span>
+              <span class="meta-value" id="expiresAtTime">-</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-title">Sumber Deteksi:</span>
+              <span class="meta-value" id="expirySourceText">Auto-Detect</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-title">Jadwal Re-Login Otomatis:</span>
               <span class="meta-value" id="nextRefreshTime">-</span>
             </div>
             <div class="meta-row">
